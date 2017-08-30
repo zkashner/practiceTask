@@ -22,4 +22,4 @@ paper_slides/build/
 *.svn
 .sconsign.dblite
 *.lyx.emergency
-
+*.ipynb
