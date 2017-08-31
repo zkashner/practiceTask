@@ -53,4 +53,7 @@ debrief_env = {'MAXIT' : 10,
                
 atexit.register(log.end_log)
 atexit.register(gs.misc.scons_debrief, target = 'state_of_repo.log', env = debrief_env)
+atexit.register(gs.provenance.make_provenance, start_path = './',
+                                               readme_path = '../readme.md',
+                                               provenance_path = 'release/provenance.log')
 

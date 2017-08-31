@@ -1,0 +1,339 @@
+*** GSLab directory provenance ***
+directory: /Users/lequan/template/paper_slides
+
+*** Directory information
+total bytes: 470818
+number of files: 43
+most recent modification time: 2017-08-30 17:40:22
+
+*** README verbatim
+path: /Users/lequan/template/readme.md
+# GSLab Template 
+
+The GSLab Template is a minimal working demonstration of the tools and organization used by projects in the GSLab. We use SCons and a few custom builders to execute scripts and track dependencies in a portable and flexible manner.
+
+## Prerequisites
+
+You'll need the following to run the template. [Homebrew](https://brew.sh/) for Mac and [Linuxbrew](http://linuxbrew.sh/) for Linux make this easier.
+* Windows `cmd.exe`, Mac OS X `bash`, or Linux `bash`. 
+* [Python 2.7.X](https://wiki.python.org/moin/BeginnersGuide/Download) for [Windows](https://docs.python.org/2/using/windows.html), [Mac](https://docs.python.org/2/using/mac.html) or [Linux](https://docs.python.org/2/using/unix.html).
+    * [gslab_python](https://github.com/gslab-econ/gslab_python) version 4.1.0 or later.
+    * [PyYAML](http://pyyaml.org/wiki/PyYAML) a Python module for parsing YAML files. 
+* [SCons](http://scons.org/pages/download.html) version 2.4 or later.
+* [git](https://git-scm.com/downloads) for version control.
+    * [git-lfs](https://git-lfs.github.com/) for versioning large files. 
+    * You'll need both git and git-lfs to clone the repository. 
+* [LyX](https://www.lyx.org/Download) (with instructions for LaTeX) 
+    * Add LyX to your PATH for [Windows](http://www.computerhope.com/issues/ch000549.htm), [Mac](http://hathaway.cc/post/69201163472/how-to-edit-your-path-environment-variables-on-mac), and [Linux](http://stackoverflow.com/questions/14637979/how-to-permanently-set-path-on-linux).
+    * The beamer theme [`metropolis`](https://github.com/matze/mtheme). This is part of MikTeX since Dec 2014. 
+
+## Getting started
+
+1. Open a shell, clone the repository, and navigate to its root.
+    ```
+    git clone https://github.com/gslab-econ/template.git
+    cd template
+    ```
+2. You're ready to go. We'll prompt you to enter any necessary information and store it in `config_user.yaml` as your scripts run. 
+    * To build everything that has been modified or with dependencies in the repository that have been modified.
+        ```
+        scons
+        ```
+    * To build everything in a single directory of targets that has been modified and all of their dependencies that have been modified.
+        ```
+        scons build/path/to/directory
+        ```
+    * To build a single target that has been modified and all of its dependencies that have been modified.
+        ```
+        scons build/path/to/file.txt
+        ```
+3. To customize this repository and switch on/off any required softwares per your need, please go to `config_global.yaml` and follow the instruction there. 
+
+## Copying the template
+
+If you want to create a repository with the same structure as this template you can fork it. If you want a repository without any of our git history, follow these instructions. 
+* Create an empty repository in GitHub and clone it. 
+* Copy the contents of this template into the empty repository. Make sure to exclude the `.git` folder, but include the [`.gitattributes`](https://git-scm.com/docs/gitattributes) and [`.gitignore`](https://git-scm.com/docs/gitignore) files. 
+* Commit the changes and push to the new repository **(Do not commit `config_user.yaml`)**.
+
+## FAQ 
+
+##### What is `config_user.yaml`?
+
+Each user is allowed to have different local specifications: We don't put any restrictions on where you keep large files, what you call your executables, or how you manage shared directories. We do need to find these things, and that's what `config_user.yaml` is for. Each user maintains an **unversioned** [YAML file](http://yaml.org/) with these sorts of specifications. Each script uses its associated yaml-parsing module to read these specifications each time the script is run. 
+
+##### What do I put in `config_user.yaml`?
+
+There's no "default" for `config_user.yaml` because it depends on system specifications and user preferences. Three things we do recommend keeping in `config_user.yaml` are the name of your Stata executable, the location of a [SCons cache directory](http://scons.org/doc/2.0.1/HTML/scons-user/c4213.html), and the location of a release directory. These fields don't have to be specified if you're not using them, and we'll prompt you for their values at runtime if you've forgotten to specify them and they're necessary. A Mac example where Example_User is running a factory-fresh StataMP and has local access to a directories named cache/template and release on Dropbox would be 
+
+```YAML
+stata_executable: stata-mp
+cache_directory: /Users/Example_User/Dropbox/cache/template
+release_directory: /Users/Example_User/Dropbox/release/
+```
+
+##### How do I handle data external to my repository?
+
+We are agnostic about how you incorporate external data into the template. There's no custom builder for these assets, by design. Our suggestions:
+
+* When a large dataset is stored locally, `config_user.yaml` can include an entry specifying the user-specific path to that dataset. The key of the entry should be constant across users and documented in the top-level readme of the repository.
+
+* When a large dataset is stored externally, there are a few options. 
+    * The top-level readme can specify manual download and storage instructions. This is simple, easy to customize, and unlikely to cause errors during a SCons build. It does, however, require each user to successfully download the same dataset, perhaps in an unstructured manner. 
+    * The download can be incorporated into the SCons build. We either execute a program to transfer data (e.g., `rsync` or `rclone`) directly in a standard SCons command or from within a script executed by one of our custom builders. These methods have the benefits of automation and dependency tracking, but they can introduce idiosyncratic errors if the download steps are prone to failure.
+    * Regardless of the download method, the path to the dataset should be added to `config_global.yaml` and `.gitignore` if it is stored within the repository and to `config_user.yaml` if it is stored elsewhere. 
+
+##### Can I use other software for data analysis?
+
+Yes. We have custom builders for R, Stata, and Matlab. You can also use them with the same syntax as the Python builder. You can turn on these builders in `config_global.yaml`. See `analysis/prepare_data/` for sample scripts. Uncomment certain blocks in `analysis/prepare_data/SConscript` to run the sample scripts. Note that since all sample scripts produce the same output, only one block is allowed to run at each time. If you uncomment the block for some other software, you need to comment out the block for Python.
+- If you're using R, make sure it's been added to your PATH, and that you have a YAML-parsing package, such as [yaml](https://cran.r-project.org/web/packages/yaml/yaml.pdf).
+- If you're using Stata, make sure the executable is stored in `config_user.yaml` with the key `stata_executable`, and that you have installed the Stata YAML parser following the instruction [here](https://github.com/gslab-econ/stata-misc/tree/44958575f812c7d3ba72d7415a6fb11b79c56998).
+- If you're using Matlab, make sure it's been added to your PATH, and that you have installed the Matlab YAML parser following the instruction [here](https://github.com/gslab-econ/gslab_matlab/blob/f11eff492e0c982cf344c60b7e7ce0e7b7a66872/README.md#installation-instructions-for-matlab-r2016b).
+
+##### Can I pass "command line style" arguments to a script?
+
+You bet. All of our custom builders accept "command line style" arguments with the same method. Enumerate the arguments in a list and pass them to the builder through the `CL_ARG` keyword argument, exactly the same way you specify sources and targets. We'll format this list, and `scons` will pass its contents to the script at runtime. You can reference these arguments when writing a script using the standard practice for its language.
+
+##### How is the build process logged?
+
+Each of our custom builders produces a log of its process in the same directory as the first of its targets. Each log is named `sconscript.log` by default, and you can insert custom text between `sconscript` and `.log` by passing it as a string through the builder's `log_ext` keyword argument. It's similar to the way that you specify sources and targets, except that the `log_ext` argument must be a string. You should specify the `log_ext` argument for builders that produce logs in the same directory, otherwise the default `sconscript.log` will be overwritten by each builder.
+
+After all the steps in the build are completed, we'll comb through the directory and look for for any files named `sconscript*.log`. These logs will be concatenated—with the earliest completed ones first and all logs with errors on top. We'll store this concatenated log at the root of the repository in `sconstruct.log`. 
+
+##### Can I write my paper in LaTeX instead of LyX?
+
+Yes. We also have the LaTeX builder. See `paper_slides/source/paper` for demonstration.
+
+##### Can I release my repository?
+
+Yes, our [custom tool](https://github.com/gslab-econ/gslab_python/tree/master/gslab_scons) allows you to release to GitHub and a local destination specified in `config_user.yaml`. A new release can be transfered to a remote manually (e.g., using `rsync` or `rclone`) or automatically by specifying a local destination that's synced to a remote (e.g., a Dropbox directory). 
+
+Every file intended for release should be added to the `release` directory. Files not intended for release to GitHub should be added to `.gitignore`. Our tool will transfer everything in `release` to the local destination and create a [GitHub release](https://help.github.com/articles/creating-releases/) with all the versioned files—those not added to `.gitignore`—in `release`.
+
+##### What if there are large files I need to put in `release` but cannot be versioned?
+
+For large files to be released, our protocol is to keep them in a designated subfolder named `release/lg`. By default, `release/lg` is in `.gitignore`. When you use our custom release tool, `release/lg` will be included in the local destination release and not pushed to GitHub.
+
+#### License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 Matthew Gentzkow, Jesse Shapiro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*** File information
+path|bytes|most recent modification time|MurmurHash3
+./.DS_Store|6148|2017-08-23 14:13:09|119923469780805174605952226040967721519
+./.sconsign.dblite|7757|2017-08-30 17:40:22|259431504700590190096382825078631377224
+./config_global.yaml|365|2017-08-30 15:23:47|70416050211029015090166656122043534751
+./configuration_test.py|2016|2017-08-30 15:23:47|263367897687100415265477046800038234309
+./SConstruct|2111|2017-08-30 17:22:01|95363902598365430757500507999191195652
+./sconstruct.log|199|2017-08-30 17:40:22|109171174246405490141552853533609809476
+./input/.DS_Store|6148|2017-08-23 12:36:07|326325628801898365656163489473807241433
+./input/plot.eps|15385|2017-08-30 15:23:47|175413203662968919957417255562040088244
+./input/provenance.log|14387|2017-08-30 17:33:19|284040489824497190736116157665913364298
+./input/provenance.txt|78|2017-08-30 15:23:47|188401067517325434487905345687718636461
+./input/table.txt|39|2017-08-30 15:23:47|219211563212627875360097349736435683097
+./release/provenance.log|29943|2017-08-30 17:33:12|317293650341183998880501988327349901998
+./release/sconstruct.log|250|2017-08-30 17:32:49|192304677842199728392280812780297579725
+./release/state_of_repo.log|4451|2017-08-30 17:32:48|91223033491766962390983751264532684280
+./source/.DS_Store|6148|2017-08-22 21:25:44|315864801885200730450601367485956449528
+./build/paper/ondeck.pdf|18273|2017-08-30 17:22:06|278528102518678804315543628575517783132
+./build/paper/online_appendix.pdf|45354|2017-08-30 17:22:07|249856290176204498406349139113114568695
+./build/paper/paper.pdf|58952|2017-08-30 17:22:10|68346616071669465562913867723270115999
+./build/paper/sconscript.log|342|2017-08-30 17:22:10|213081619327220183558507881243827904909
+./build/paper/text.pdf|18273|2017-08-30 17:22:10|108713031930392864721130993694517244215
+./build/tables/sconscript.log|157|2017-08-30 17:22:07|100898677439455791449532194263393750493
+./build/tables/table.lyx|4094|2017-08-30 17:22:07|318356094069786236736186588331721131587
+./build/talk/sconscript.log|589|2017-08-30 17:22:14|26571642883328022356865029236692157917
+./build/talk/slides.pdf|29952|2017-08-30 17:22:14|125465151314663203719466480230236475331
+./release/paper/ondeck.pdf|18273|2017-08-30 17:22:06|278528102518678804315543628575517783132
+./release/paper/online_appendix.pdf|45354|2017-08-30 17:22:07|249856290176204498406349139113114568695
+./release/paper/paper.aux|342|2017-08-22 21:26:48|141426126952152742466881073106149546758
+./release/paper/paper.pdf|58952|2017-08-30 17:22:10|68346616071669465562913867723270115999
+./release/paper/sconscript.log|342|2017-08-30 17:22:10|213081619327220183558507881243827904909
+./release/paper/text.pdf|18273|2017-08-30 17:22:10|108713031930392864721130993694517244215
+./release/talk/sconscript.log|589|2017-08-30 17:22:14|26571642883328022356865029236692157917
+./release/talk/slides.pdf|29952|2017-08-30 17:22:14|125465151314663203719466480230236475331
+./source/figures/figure.lyx|2214|2017-08-30 15:23:47|211517100359923167646646089661806355683
+./source/paper/ondeck.lyx|2522|2017-08-30 15:23:47|64527087244541312483915340277964878042
+./source/paper/online_appendix.lyx|3610|2017-08-30 15:23:47|56602678391565346396074552035426744807
+./source/paper/paper.lyx|5236|2017-08-30 15:23:47|89915460324933823762838500647668567573
+./source/paper/SConscript|677|2017-08-30 15:23:47|218248578559519200668633283413465456657
+./source/paper/text.lyx|2522|2017-08-30 15:23:47|64527087244541312483915340277964878042
+./source/paper/text.tex|1300|2017-08-30 15:23:47|96462222393951225058461385200506201589
+./source/tables/SConscript|233|2017-08-30 15:23:47|145601762342425574476559850656535045626
+./source/tables/table.lyx|4082|2017-08-30 15:23:47|185306980426562737843905820037980160695
+./source/talk/SConscript|237|2017-08-30 15:23:47|323123878436352490279216362518632862451
+./source/talk/slides.lyx|4697|2017-08-30 15:23:47|152380959356059102583034076882957358788
+********************************************************************************
+
+*** Subdirectory provenance: /Users/lequan/template/paper_slides/input/provenance.log
+*** GSLab directory provenance ***
+directory: /Users/lequan/template/analysis
+NOTE: MANUALLY COPIED FROM DIRECTORY
+
+*** Directory information
+total bytes: 4074005
+number of files: 29
+most recent modification time: 2017-08-30 17:19:15
+
+*** README verbatim
+path: /Users/lequan/template/readme.md
+# GSLab Template 
+
+The GSLab Template is a minimal working demonstration of the tools and organization used by projects in the GSLab. We use SCons and a few custom builders to execute scripts and track dependencies in a portable and flexible manner.
+
+## Prerequisites
+
+You'll need the following to run the template. [Homebrew](https://brew.sh/) for Mac and [Linuxbrew](http://linuxbrew.sh/) for Linux make this easier.
+* Windows `cmd.exe`, Mac OS X `bash`, or Linux `bash`. 
+* [Python 2.7.X](https://wiki.python.org/moin/BeginnersGuide/Download) for [Windows](https://docs.python.org/2/using/windows.html), [Mac](https://docs.python.org/2/using/mac.html) or [Linux](https://docs.python.org/2/using/unix.html).
+    * [gslab_python](https://github.com/gslab-econ/gslab_python) version 4.1.0 or later.
+    * [PyYAML](http://pyyaml.org/wiki/PyYAML) a Python module for parsing YAML files. 
+* [SCons](http://scons.org/pages/download.html) version 2.4 or later.
+* [git](https://git-scm.com/downloads) for version control.
+    * [git-lfs](https://git-lfs.github.com/) for versioning large files. 
+    * You'll need both git and git-lfs to clone the repository. 
+* [LyX](https://www.lyx.org/Download) (with instructions for LaTeX) 
+    * Add LyX to your PATH for [Windows](http://www.computerhope.com/issues/ch000549.htm), [Mac](http://hathaway.cc/post/69201163472/how-to-edit-your-path-environment-variables-on-mac), and [Linux](http://stackoverflow.com/questions/14637979/how-to-permanently-set-path-on-linux).
+    * The beamer theme [`metropolis`](https://github.com/matze/mtheme). This is part of MikTeX since Dec 2014. 
+
+## Getting started
+
+1. Open a shell, clone the repository, and navigate to its root.
+    ```
+    git clone https://github.com/gslab-econ/template.git
+    cd template
+    ```
+2. You're ready to go. We'll prompt you to enter any necessary information and store it in `config_user.yaml` as your scripts run. 
+    * To build everything that has been modified or with dependencies in the repository that have been modified.
+        ```
+        scons
+        ```
+    * To build everything in a single directory of targets that has been modified and all of their dependencies that have been modified.
+        ```
+        scons build/path/to/directory
+        ```
+    * To build a single target that has been modified and all of its dependencies that have been modified.
+        ```
+        scons build/path/to/file.txt
+        ```
+3. To customize this repository and switch on/off any required softwares per your need, please go to `config_global.yaml` and follow the instruction there. 
+
+## Copying the template
+
+If you want to create a repository with the same structure as this template you can fork it. If you want a repository without any of our git history, follow these instructions. 
+* Create an empty repository in GitHub and clone it. 
+* Copy the contents of this template into the empty repository. Make sure to exclude the `.git` folder, but include the [`.gitattributes`](https://git-scm.com/docs/gitattributes) and [`.gitignore`](https://git-scm.com/docs/gitignore) files. 
+* Commit the changes and push to the new repository **(Do not commit `config_user.yaml`)**.
+
+## FAQ 
+
+##### What is `config_user.yaml`?
+
+Each user is allowed to have different local specifications: We don't put any restrictions on where you keep large files, what you call your executables, or how you manage shared directories. We do need to find these things, and that's what `config_user.yaml` is for. Each user maintains an **unversioned** [YAML file](http://yaml.org/) with these sorts of specifications. Each script uses its associated yaml-parsing module to read these specifications each time the script is run. 
+
+##### What do I put in `config_user.yaml`?
+
+There's no "default" for `config_user.yaml` because it depends on system specifications and user preferences. Three things we do recommend keeping in `config_user.yaml` are the name of your Stata executable, the location of a [SCons cache directory](http://scons.org/doc/2.0.1/HTML/scons-user/c4213.html), and the location of a release directory. These fields don't have to be specified if you're not using them, and we'll prompt you for their values at runtime if you've forgotten to specify them and they're necessary. A Mac example where Example_User is running a factory-fresh StataMP and has local access to a directories named cache/template and release on Dropbox would be 
+
+```YAML
+stata_executable: stata-mp
+cache_directory: /Users/Example_User/Dropbox/cache/template
+release_directory: /Users/Example_User/Dropbox/release/
+```
+
+##### How do I handle data external to my repository?
+
+We are agnostic about how you incorporate external data into the template. There's no custom builder for these assets, by design. Our suggestions:
+
+* When a large dataset is stored locally, `config_user.yaml` can include an entry specifying the user-specific path to that dataset. The key of the entry should be constant across users and documented in the top-level readme of the repository.
+
+* When a large dataset is stored externally, there are a few options. 
+    * The top-level readme can specify manual download and storage instructions. This is simple, easy to customize, and unlikely to cause errors during a SCons build. It does, however, require each user to successfully download the same dataset, perhaps in an unstructured manner. 
+    * The download can be incorporated into the SCons build. We either execute a program to transfer data (e.g., `rsync` or `rclone`) directly in a standard SCons command or from within a script executed by one of our custom builders. These methods have the benefits of automation and dependency tracking, but they can introduce idiosyncratic errors if the download steps are prone to failure.
+    * Regardless of the download method, the path to the dataset should be added to `config_global.yaml` and `.gitignore` if it is stored within the repository and to `config_user.yaml` if it is stored elsewhere. 
+
+##### Can I use other software for data analysis?
+
+Yes. We have custom builders for R, Stata, and Matlab. You can also use them with the same syntax as the Python builder. You can turn on these builders in `config_global.yaml`. See `analysis/prepare_data/` for sample scripts. Uncomment certain blocks in `analysis/prepare_data/SConscript` to run the sample scripts. Note that since all sample scripts produce the same output, only one block is allowed to run at each time. If you uncomment the block for some other software, you need to comment out the block for Python.
+- If you're using R, make sure it's been added to your PATH, and that you have a YAML-parsing package, such as [yaml](https://cran.r-project.org/web/packages/yaml/yaml.pdf).
+- If you're using Stata, make sure the executable is stored in `config_user.yaml` with the key `stata_executable`, and that you have installed the Stata YAML parser following the instruction [here](https://github.com/gslab-econ/stata-misc/tree/44958575f812c7d3ba72d7415a6fb11b79c56998).
+- If you're using Matlab, make sure it's been added to your PATH, and that you have installed the Matlab YAML parser following the instruction [here](https://github.com/gslab-econ/gslab_matlab/blob/f11eff492e0c982cf344c60b7e7ce0e7b7a66872/README.md#installation-instructions-for-matlab-r2016b).
+
+##### Can I pass "command line style" arguments to a script?
+
+You bet. All of our custom builders accept "command line style" arguments with the same method. Enumerate the arguments in a list and pass them to the builder through the `CL_ARG` keyword argument, exactly the same way you specify sources and targets. We'll format this list, and `scons` will pass its contents to the script at runtime. You can reference these arguments when writing a script using the standard practice for its language.
+
+##### How is the build process logged?
+
+Each of our custom builders produces a log of its process in the same directory as the first of its targets. Each log is named `sconscript.log` by default, and you can insert custom text between `sconscript` and `.log` by passing it as a string through the builder's `log_ext` keyword argument. It's similar to the way that you specify sources and targets, except that the `log_ext` argument must be a string. You should specify the `log_ext` argument for builders that produce logs in the same directory, otherwise the default `sconscript.log` will be overwritten by each builder.
+
+After all the steps in the build are completed, we'll comb through the directory and look for for any files named `sconscript*.log`. These logs will be concatenated—with the earliest completed ones first and all logs with errors on top. We'll store this concatenated log at the root of the repository in `sconstruct.log`. 
+
+##### Can I write my paper in LaTeX instead of LyX?
+
+Yes. We also have the LaTeX builder. See `paper_slides/source/paper` for demonstration.
+
+##### Can I release my repository?
+
+Yes, our [custom tool](https://github.com/gslab-econ/gslab_python/tree/master/gslab_scons) allows you to release to GitHub and a local destination specified in `config_user.yaml`. A new release can be transfered to a remote manually (e.g., using `rsync` or `rclone`) or automatically by specifying a local destination that's synced to a remote (e.g., a Dropbox directory). 
+
+Every file intended for release should be added to the `release` directory. Files not intended for release to GitHub should be added to `.gitignore`. Our tool will transfer everything in `release` to the local destination and create a [GitHub release](https://help.github.com/articles/creating-releases/) with all the versioned files—those not added to `.gitignore`—in `release`.
+
+##### What if there are large files I need to put in `release` but cannot be versioned?
+
+For large files to be released, our protocol is to keep them in a designated subfolder named `release/lg`. By default, `release/lg` is in `.gitignore`. When you use our custom release tool, `release/lg` will be included in the local destination release and not pushed to GitHub.
+
+#### License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 Matthew Gentzkow, Jesse Shapiro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*** File information
+path|bytes|most recent modification time|MurmurHash3
+./.DS_Store|10244|2017-08-30 15:26:33|144403212586751643188827861159040788911
+./.sconsign.dblite|4302|2017-08-30 16:30:14|266759107595167928270228279539843755220
+./config_global.yaml|361|2017-08-30 15:23:47|128359796249873021057806552141808503434
+./config_user.yaml|19|2017-08-25 13:29:24|126136101536376820342975235821083461787
+./configuration_test.py|2286|2017-08-30 15:23:47|70553842936891560682854849144982683488
+./provenance.ipynb|10317|2017-08-30 17:19:15|276175642591885632943422544712791997954
+./SConstruct|2226|2017-08-30 15:23:47|281797537348191854845926419564741844445
+./.ipynb_checkpoints/provenance-checkpoint.ipynb|10317|2017-08-30 17:19:15|276175642591885632943422544712791997954
+./build/.DS_Store|6148|2017-08-30 17:16:35|127579475716305668236865856350585229468
+./release/sconstruct.log|692|2017-08-30 16:30:15|196241121667241117807561428631153954910
+./release/state_of_repo.log|3078|2017-08-30 16:30:14|287754178606162395230835160941043738934
+./source/.DS_Store|6148|2017-08-28 20:57:22|9748061236238326618837138398001742207
+./build/descriptive/plot.eps|15385|2017-08-30 16:30:14|2781722298743123862477802952167180667
+./build/descriptive/sconscript_descriptive.log|99|2017-08-30 16:30:14|317835827338297498577908041785575718344
+./build/descriptive/table.txt|39|2017-08-30 16:30:13|219211563212627875360097349736435683097
+./build/prepare_data/.DS_Store|6148|2017-08-25 17:50:56|326325628801898365656163489473807241433
+./build/prepare_data/data.txt|1988897|2017-08-28 10:25:25|223045040205628845609683218064425786429
+./build/prepare_data/sconscript_create_data.log|99|2017-08-28 10:25:25|284633132162590655242233844887613814244
+./release/descriptive/plot.eps|15385|2017-08-30 16:30:14|2781722298743123862477802952167180667
+./release/descriptive/sconscript_descriptive.log|99|2017-08-30 16:30:14|317835827338297498577908041785575718344
+./release/descriptive/table.txt|39|2017-08-30 16:30:13|219211563212627875360097349736435683097
+./release/lg/data.txt|1988897|2017-08-23 14:13:20|223045040205628845609683218064425786429
+./source/descriptive/descriptive.py|544|2017-08-30 15:23:47|76263111109536075641834484043808006341
+./source/descriptive/SConscript|468|2017-08-30 15:23:47|49385175873306256404611837197211069166
+./source/prepare_data/create_data.do|262|2017-08-30 15:23:47|152002202142133293654518778804674249259
+./source/prepare_data/create_data.m|200|2017-08-30 15:23:47|71108623751965646360768038873490064235
+./source/prepare_data/create_data.py|257|2017-08-30 15:23:47|95202158703656471520522098011693111690
+./source/prepare_data/create_data.r|247|2017-08-30 15:23:47|62720579327838563983004766553432828226
+./source/prepare_data/SConscript|802|2017-08-30 15:23:47|116852288058504519623763987912202659500
+********************************************************************************
+
+
