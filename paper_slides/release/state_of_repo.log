@@ -8,29 +8,18 @@ as it can be edited after state_of_repo.log finishes running
 ===================================
 Last commit:
 
-commit 414cc45e08f49c0bfc1c81b3afe36b47d6a92066
+commit 95f35b53cd3b283f782da740a7d077d8141e72e2
 Author: Quan Le <lequan@stanford.edu>
-Date:   Wed Aug 30 15:19:51 2017 -0700
+Date:   Wed Aug 30 17:42:40 2017 -0700
 
-    add .ipynb to gitignore
+    #60 provenance demonstration
 
 
 Files changed since last commit:
 
-analysis/release/descriptive/plot.eps
-analysis/release/descriptive/sconscript_descriptive.log
-analysis/release/sconstruct.log
-analysis/release/state_of_repo.log
-paper_slides/SConstruct
-paper_slides/release/paper/ondeck.pdf
-paper_slides/release/paper/online_appendix.pdf
-paper_slides/release/paper/paper.pdf
-paper_slides/release/paper/sconscript.log
-paper_slides/release/paper/text.pdf
+paper_slides/release/provenance.log
 paper_slides/release/sconstruct.log
 paper_slides/release/state_of_repo.log
-paper_slides/release/talk/sconscript.log
-paper_slides/release/talk/slides.pdf
 
 ===================================
 
@@ -40,6 +29,9 @@ paper_slides/release/talk/slides.pdf
 ./config_global.yaml:
    modified on: 30 Aug 2017 15:23:47
    size of file: 365
+./config_user.yaml:
+   modified on: 30 Aug 2017 18:22:51
+   size of file: 82
 ./configuration_test.py:
    modified on: 30 Aug 2017 15:23:47
    size of file: 2016
@@ -47,11 +39,11 @@ paper_slides/release/talk/slides.pdf
    modified on: 30 Aug 2017 17:22:01
    size of file: 2111
 ./sconstruct.log:
-   modified on: 30 Aug 2017 17:40:22
-   size of file: 199
+   modified on: 30 Aug 2017 18:26:04
+   size of file: 163
 ./state_of_repo.log:
-   modified on: 30 Aug 2017 17:40:23
-   size of file: 953
+   modified on: 30 Aug 2017 18:26:04
+   size of file: 531
 ./build/paper/ondeck.pdf:
    modified on: 30 Aug 2017 17:22:06
    size of file: 18273
@@ -92,14 +84,14 @@ paper_slides/release/talk/slides.pdf
    modified on: 30 Aug 2017 15:23:47
    size of file: 39
 ./release/provenance.log:
-   modified on: 30 Aug 2017 17:40:22
-   size of file: 29946
+   modified on: 30 Aug 2017 18:26:04
+   size of file: 30116
 ./release/sconstruct.log:
-   modified on: 30 Aug 2017 17:32:49
-   size of file: 250
+   modified on: 30 Aug 2017 18:24:56
+   size of file: 214
 ./release/state_of_repo.log:
-   modified on: 30 Aug 2017 17:32:48
-   size of file: 4451
+   modified on: 30 Aug 2017 18:24:56
+   size of file: 4106
 ./release/paper/ondeck.pdf:
    modified on: 30 Aug 2017 17:22:06
    size of file: 18273
