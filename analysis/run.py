@@ -1,7 +1,7 @@
 import sys
 import subprocess
 
-execute_script = '../analysis/source/prepare_data/create_data.r'
+execute_script = '../analysis/source/prepare_data/create_data.do'
 
 def main(execute_script):
     '''
@@ -13,7 +13,7 @@ def main(execute_script):
     cl_args = ' '.join(sys.argv)
 
     # Create call
-    call = 'Rscript %s %s' % (execute_script, cl_args)
+    call = 'stata-mp -e %s %s' % (execute_script, cl_args)
 
     # Execute
     subprocess.call(call, shell = True)
