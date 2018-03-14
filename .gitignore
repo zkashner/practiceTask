@@ -25,3 +25,4 @@ scons/
 *.out
 *.svn
 *.ipynb
+analysis/source/descriptive/data.txt

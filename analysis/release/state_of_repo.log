@@ -8,254 +8,38 @@ as it can be edited after state_of_repo.log finishes running
 ===================================
 Last commit:
 
-commit a820bdf8afdd05464fbcd40c47de2e7b7dc5ebff
-Author: Quan <lequan@stanford.edu>
-Date:   Fri Mar 2 16:35:02 2018 -0800
+commit ecf239539b0fa76949771ef710c95e5179603a25
+Author: Zane Kashner <zanekashner@gmail.com>
+Date:   Tue Mar 6 13:46:47 2018 -0800
 
-    4.1.0 Release (#85)
-    
-    * Pull request for #62: Separate sub-directory for analysis and paper/slides (#72)
-    
-    * #62 reorganize repo
-    
-    * #62 add provenance
-    
-    * #62 allow provenance to check missing files
-    
-    * #72 response to PR and comments
-    
-    * #72 small name change
-    
-    * Pull request for #67: Create release/lg for large files (#73)
-    
-    * #67 add code to fake lg dataset, add lg to gitignore
-    
-    * #67 add lg protocol to readme.md
-    
-    * Update constants.yaml
-    
-    * #67 blow up data file to do large release
-    
-    * #67 change hist in default stata code to limit number of pins
-    
-    * #67 delete old logs
-    
-    * #67 readme change
-    
-    * #67 manually copy new analysis files to paper input
-    
-    * rerun paper-slides
-    
-    * Pull request: move top level logs to release (#75)
-    
-    * #61 first pass
-    
-    * #61 second pass
-    
-    * #61 switch to single quote
-    
-    * #93 aux first pass
-    
-    * #93 first pass
-    
-    * #93 second pass
-    
-    * Pull request for #61: restructure YAML in template  (#74)
-    
-    * #61 first pass
-    
-    * #61 second pass
-    
-    * #61 switch to single quote
-    
-    * #61 rm config_template
-    
-    * add instruction on switching required softwares
-    
-    * rm unused config_user_template
-    
-    * #97 testing anything template
-    
-    * gslab-python#97 demonstration scripts
-    
-    * Pull Request for #66: Force integration with gslab_stata (#77)
-    
-    * #66 revise stata scripts
-    
-    * #66 modify README
-    
-    * #66 small change in readme
-    
-    * #66 add note in README
-    
-    * gslab-python#97 change generator syntax
-    
-    * gslab-python#97 respond to PR
-    
-    * Pull Request for #64: Port example scripts to multiple languages (#76)
-    
-    * #64 add examples for python stata matlab R, mute everything except python
-    
-    * #64 add example of latex
-    
-    * #64 modify dependencies
-    
-    * #64 turn on git-lfs
-    
-    * #64 response to PR
-    
-    * #64 update readme and modify sample code
-    
-    * solve conflict after merge
-    
-    * rm accidental commit of local scripts
-    
-    * Pull Request for #63: Make current dependencies optional (#78)
-    
-    * #63 add builder check
-    
-    * #63 add autimatic config scripts
-    
-    * #63 response to PR
-    
-    * #63 change the default to not upgrade
-    
-    * #63 force installing of gslab_python
-    
-    * #63 small change per PR
-    
-    * #63 small change
-    
-    * Pull request for creating size warning when git-lfs not presented (#79)
-    
-    * first pass on template
-    
-    * add in size warning for paper dir
-    
-    * fix bugs
-    
-    * add in option for git attributes
-    
-    * add in paper dir
-    
-    * Pull request for documenting and organizing debrief  (#81)
-    
-    * #69 first pass
-    
-    * implement PR
-    
-    * small edits
-    
-    * small edits
-    
-    * Pull request for gslab_python#99: Add cache reconfiguration code (#83)
-    
-    * gslab-econ/gslab_python#99 switch to scons local
-    
-    * gslab-econ/gslab_python#99 delete scons local, lfs track .zip
-    
-    * gslab-econ/gslab_python#99 commit scons-local-2.5.1
-    
-    * gslab-econ/gslab_python#99 scons python scripts for each sub
-    
-    * gslab-econ/gslab_python#99 remove top-level scons.zip
-    
-    * #83 gslab-econ/gslab_python#99 update commands in readme.
-    
-    * 83 gslab-econ/gslab_python#99 symlink to scons.py
-    
-    * #83 gslab-econ/gslab_python#83 scons.py -> run.py, mention global scons in readme
-    
-    * #83 gslab-econ/gslab_python#99 arg in main call
-    
-    * Pull request for #82: Update docs for 4.1.0  (#84)
-    
-    * #82 readme for 4.1.0, fix scons in paper_slides, build_anything in analysis
-    
-    * #82 update data download procedure
-    
-    * #82 add jupyter notebooks to .gitignore
-    
-    * #82 build_anything demonstration
-    
-    * #82 output
-    
-    * #82 uncomment builder
-    
-    * #84 #82 instructions to connect analysis and paper_slides
-    
-    * #84 #82 respond to PR
-    
-    * #84 #82 more PR
-    
-    * change template
-    
-    * Pull request for #86: Integrate make_provenance into SConstruct (#87)
-    
-    * #86 incorporate external logging from gslab-econ/gslab_python#131
-    
-    * #87 #86 PR
-    
-    * #132 #131 delete stray file
-    
-    * #87 #86 comment out some builders in analysis/SConstruct
-    
-    * Pull request for #88: Grab all paths when recording inputs (#89)
-    
-    * #88 allow inputs specificed as str or dict
-    
-    * #88 fix sconscript after flatten input in config_global
-    
-    * pep8 e713 change
-    
-    * Pull request for #90: Load PYTHONPATH in SCons ENV (#91)
-    
-    * #90 store pythonpath
-    
-    * #90 remove stray pythonpath definition
-    
-    * Fix location of sconstruct.log.
-    
-    * Capitalization in readme
-    
-    * Pull request for #92: Turn off default logging during SCons dry-run (#93)
-    
-    * #92 turn off logging on dry run, uses gslab-econ/gslab_python#141
-    
-    * #93 #92 move dry-run checking for logs into gslab_python
-    
-    * Fix typo in readme
-    
-    * #95 switch to scons 3 (#97)
-    
-    * Update SCons local version in README
-    
-    * practice task
-    
-    * realized my mistake and reverting
-    
-    * Pull request for #96: Complete MG points 1-5  (#98)
-    
-    * #95 switch to scons 3
-    
-    * .#96 update to new builders and config and rerun
-    
-    * #96 drop _ before anything builder
-    
-    * #98 #96 rerun with new builders
-    
-    * #98 #96 typo in README
-    
-    * #98 #96 better advertise package dependencies in config scripts
-    
-    * #98 #96 mention reset config_user in README FAQ
+    ran the stata file
 
 
 Files changed since last commit:
 
 
+.gitignore
+analysis/create_data.log
+analysis/release/create_data.log
 analysis/release/descriptive/plot.eps
 analysis/release/descriptive/sconscript_descriptive.log
+analysis/release/descriptive/table.txt
+analysis/release/sconstruct.log
+analysis/release/state_of_repo.log
+analysis/source/descriptive/SConscript
+analysis/source/descriptive/descriptive.py
+paper_slides/input/plot.eps
+paper_slides/input/table.txt
+paper_slides/release/paper/ondeck.pdf
+paper_slides/release/paper/online_appendix.pdf
+paper_slides/release/paper/paper.pdf
+paper_slides/release/paper/sconscript.log
+paper_slides/release/paper/text.pdf
+paper_slides/release/sconstruct.log
+paper_slides/release/state_of_input.log
+paper_slides/release/state_of_repo.log
+paper_slides/release/talk/sconscript.log
+paper_slides/release/talk/slides.pdf
 
 ===================================
 
@@ -263,68 +47,71 @@ analysis/release/descriptive/sconscript_descriptive.log
 
 ===================================
 ./config_global.yaml:
-   modified on: 06 Mar 2018 11:31:33
+   modified on: 12 Mar 2018 19:39:31
    size of file: 1264
 ./config_user.yaml:
    modified on: 06 Mar 2018 11:34:08
    size of file: 632
 ./run.py:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 449
+   modified on: 06 Mar 2018 13:27:37
+   size of file: 476
 ./SConstruct:
    modified on: 06 Mar 2018 11:31:33
    size of file: 1878
 ./sconstruct.log:
-   modified on: 06 Mar 2018 11:34:11
-   size of file: 502
+   modified on: 13 Mar 2018 14:23:59
+   size of file: 199
 ./state_of_repo.log:
-   modified on: 06 Mar 2018 11:34:11
-   size of file: 6178
+   modified on: 13 Mar 2018 14:23:59
+   size of file: 1225
 ./build/descriptive/plot.eps:
-   modified on: 06 Mar 2018 11:34:10
-   size of file: 15191
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 17719
 ./build/descriptive/sconscript_descriptive.log:
-   modified on: 06 Mar 2018 11:34:11
+   modified on: 12 Mar 2018 20:08:53
    size of file: 96
 ./build/descriptive/table.txt:
-   modified on: 06 Mar 2018 11:34:10
-   size of file: 39
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 55
 ./build/prepare_data/data.txt:
-   modified on: 06 Mar 2018 11:34:09
+   modified on: 11 Mar 2018 21:17:19
    size of file: 1988897
 ./build/prepare_data/sconscript_create_data.log:
    modified on: 06 Mar 2018 11:34:09
    size of file: 96
 ./release/create_data.log:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 1498
+   modified on: 12 Mar 2018 19:39:31
+   size of file: 1482
 ./release/sconstruct.log:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 306
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 686
 ./release/state_of_repo.log:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 2874
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 3290
 ./release/descriptive/plot.eps:
-   modified on: 06 Mar 2018 11:34:10
-   size of file: 15191
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 17719
 ./release/descriptive/sconscript_descriptive.log:
-   modified on: 06 Mar 2018 11:34:11
+   modified on: 12 Mar 2018 20:08:53
    size of file: 96
 ./release/descriptive/table.txt:
-   modified on: 06 Mar 2018 11:34:10
-   size of file: 39
+   modified on: 12 Mar 2018 20:08:53
+   size of file: 55
 ./release/lg/data.txt:
    modified on: 06 Mar 2018 11:34:09
    size of file: 1988897
+./source/descriptive/data.txt:
+   modified on: 12 Mar 2018 19:43:23
+   size of file: 3453388
 ./source/descriptive/descriptive.py:
-   modified on: 06 Mar 2018 11:31:33
+   modified on: 12 Mar 2018 20:08:49
    size of file: 548
 ./source/descriptive/SConscript:
-   modified on: 06 Mar 2018 11:31:33
+   modified on: 12 Mar 2018 19:57:36
    size of file: 501
 ./source/prepare_data/create_data.do:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 262
+   modified on: 06 Mar 2018 12:46:05
+   size of file: 263
 ./source/prepare_data/create_data.m:
    modified on: 06 Mar 2018 11:31:33
    size of file: 202

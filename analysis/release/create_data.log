@@ -1,7 +1,7 @@
 
   ___  ____  ____  ____  ____ (R)
  /__    /   ____/   /   ____/
-___/   /   /___/   /   /___/   15.1   Copyright 1985-2017 StataCorp LLC
+___/   /   /___/   /   /___/   15.0   Copyright 1985-2017 StataCorp LLC
   Statistics/Data Analysis            StataCorp
                                       4905 Lakeway Drive
      MP - Parallel Edition            College Station, Texas 77845 USA
@@ -11,8 +11,8 @@ ___/   /   /___/   /   /___/   15.1   Copyright 1985-2017 StataCorp LLC
 
 Unlimited-user 4-core Stata network license expires 21 Jul 2018:
        Serial number:  501509201134
-         Licensed to:  Economics
-                       Stanford University
+         Licensed to:  Zane Kashner
+                       Stanford
 
 Notes:
       1.  Stata is running in batch mode.
@@ -20,10 +20,7 @@ Notes:
       3.  More than 2 billion observations are allowed; see help obs_advice.
       4.  Maximum number of variables is set to 5000; see help set_maxvar.
 
-
-running /Applications/Stata/profile.do ...
-
-. do "source/prepare_data/create_data.do" 
+. do "../analysis/source/prepare_data/create_data.do" 
 
 . version 14
 
@@ -31,6 +28,7 @@ running /Applications/Stata/profile.do ...
 
 . preliminaries
 
+. 
 . 
 . program main
   1.     yaml read YAML using config_global.yaml
@@ -44,9 +42,9 @@ running /Applications/Stata/profile.do ...
 . 
 . * EXECUTE
 . main
-yaml_read error: level = 3 but previous level was 1 (prepare_data: build/prepare_data)
-invalid syntax
-r(100);
+number of observations (_N) was 0, now 300,000
+(note: file build/prepare_data/data.txt not found)
+file build/prepare_data/data.txt saved
 
+. 
 end of do-file
-r(100);
