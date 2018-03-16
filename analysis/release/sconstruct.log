@@ -1,9 +1,12 @@
-*** New build: {2018-03-13 14:23:59} ***
+*** New build: {2018-03-15 20:23:35} ***
 scons: done reading SConscript files.
 scons: Building targets ...
-scons: `build' is up to date.
+build_python(["build/prepare_data/data.txt"], ["source/prepare_data/create_data.py"])
 scons: `release' is up to date.
 scons: done building targets.
-*** Build completed: {2018-03-13 14:23:59} ***
+*** Build completed: {2018-03-15 20:23:37} ***
  
  
+./build/prepare_data/sconscript_create_data.log
+*** Builder log created: {2018-03-15 20:23:35}
+*** Builder log completed: {2018-03-15 20:23:36}

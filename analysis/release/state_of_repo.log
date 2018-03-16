@@ -8,38 +8,25 @@ as it can be edited after state_of_repo.log finishes running
 ===================================
 Last commit:
 
-commit ecf239539b0fa76949771ef710c95e5179603a25
+commit 37fde7aaecf934fc614915412f4fe3e020c324dc
 Author: Zane Kashner <zanekashner@gmail.com>
-Date:   Tue Mar 6 13:46:47 2018 -0800
+Date:   Tue Mar 13 22:14:08 2018 -0700
 
-    ran the stata file
+    added all the updates to analysis
 
 
 Files changed since last commit:
 
 
 .gitignore
-analysis/create_data.log
-analysis/release/create_data.log
+analysis/SConstruct
+analysis/config_global.yaml
 analysis/release/descriptive/plot.eps
 analysis/release/descriptive/sconscript_descriptive.log
 analysis/release/descriptive/table.txt
 analysis/release/sconstruct.log
 analysis/release/state_of_repo.log
-analysis/source/descriptive/SConscript
-analysis/source/descriptive/descriptive.py
-paper_slides/input/plot.eps
-paper_slides/input/table.txt
-paper_slides/release/paper/ondeck.pdf
-paper_slides/release/paper/online_appendix.pdf
-paper_slides/release/paper/paper.pdf
-paper_slides/release/paper/sconscript.log
-paper_slides/release/paper/text.pdf
-paper_slides/release/sconstruct.log
-paper_slides/release/state_of_input.log
-paper_slides/release/state_of_repo.log
-paper_slides/release/talk/sconscript.log
-paper_slides/release/talk/slides.pdf
+analysis/run.py
 
 ===================================
 
@@ -47,68 +34,74 @@ paper_slides/release/talk/slides.pdf
 
 ===================================
 ./config_global.yaml:
-   modified on: 12 Mar 2018 19:39:31
-   size of file: 1264
+   modified on: 15 Mar 2018 20:10:04
+   size of file: 1259
 ./config_user.yaml:
    modified on: 06 Mar 2018 11:34:08
    size of file: 632
 ./run.py:
-   modified on: 06 Mar 2018 13:27:37
-   size of file: 476
+   modified on: 15 Mar 2018 19:24:34
+   size of file: 449
 ./SConstruct:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 1878
+   modified on: 15 Mar 2018 20:19:54
+   size of file: 1877
 ./sconstruct.log:
-   modified on: 13 Mar 2018 14:23:59
-   size of file: 199
+   modified on: 15 Mar 2018 20:23:36
+   size of file: 255
 ./state_of_repo.log:
-   modified on: 13 Mar 2018 14:23:59
-   size of file: 1225
+   modified on: 15 Mar 2018 20:23:36
+   size of file: 715
 ./build/descriptive/plot.eps:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 17719
+   modified on: 15 Mar 2018 20:19:15
+   size of file: 15191
 ./build/descriptive/sconscript_descriptive.log:
-   modified on: 12 Mar 2018 20:08:53
+   modified on: 15 Mar 2018 20:19:15
    size of file: 96
 ./build/descriptive/table.txt:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 55
+   modified on: 15 Mar 2018 20:19:15
+   size of file: 39
 ./build/prepare_data/data.txt:
-   modified on: 11 Mar 2018 21:17:19
+   modified on: 15 Mar 2018 20:23:36
    size of file: 1988897
 ./build/prepare_data/sconscript_create_data.log:
-   modified on: 06 Mar 2018 11:34:09
+   modified on: 15 Mar 2018 20:23:36
    size of file: 96
 ./release/create_data.log:
    modified on: 12 Mar 2018 19:39:31
    size of file: 1482
 ./release/sconstruct.log:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 686
+   modified on: 15 Mar 2018 20:23:02
+   size of file: 92
+./release/state_of_input.log:
+   modified on: 15 Mar 2018 20:06:03
+   size of file: 126
 ./release/state_of_repo.log:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 3290
+   modified on: 15 Mar 2018 20:22:58
+   size of file: 3353
 ./release/descriptive/plot.eps:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 17719
+   modified on: 15 Mar 2018 20:19:15
+   size of file: 15191
 ./release/descriptive/sconscript_descriptive.log:
-   modified on: 12 Mar 2018 20:08:53
+   modified on: 15 Mar 2018 20:19:15
    size of file: 96
 ./release/descriptive/table.txt:
-   modified on: 12 Mar 2018 20:08:53
-   size of file: 55
+   modified on: 15 Mar 2018 20:19:15
+   size of file: 39
 ./release/lg/data.txt:
    modified on: 06 Mar 2018 11:34:09
    size of file: 1988897
 ./source/descriptive/data.txt:
-   modified on: 12 Mar 2018 19:43:23
-   size of file: 3453388
+   modified on: 15 Mar 2018 20:05:34
+   size of file: 1988897
 ./source/descriptive/descriptive.py:
    modified on: 12 Mar 2018 20:08:49
    size of file: 548
 ./source/descriptive/SConscript:
-   modified on: 12 Mar 2018 19:57:36
+   modified on: 15 Mar 2018 20:23:31
    size of file: 501
+./source/externals/data.txt:
+   modified on: 12 Mar 2018 19:43:23
+   size of file: 3453388
 ./source/prepare_data/create_data.do:
    modified on: 06 Mar 2018 12:46:05
    size of file: 263
@@ -125,5 +118,5 @@ paper_slides/release/talk/slides.pdf
    modified on: 06 Mar 2018 11:31:33
    size of file: 81
 ./source/prepare_data/SConscript:
-   modified on: 06 Mar 2018 11:31:33
+   modified on: 15 Mar 2018 20:05:32
    size of file: 1126
