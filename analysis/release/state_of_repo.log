@@ -8,11 +8,11 @@ as it can be edited after state_of_repo.log finishes running
 ===================================
 Last commit:
 
-commit 37fde7aaecf934fc614915412f4fe3e020c324dc
+commit 3987bae6021c7108eb0647f952728b4d4f210bb8
 Author: Zane Kashner <zanekashner@gmail.com>
-Date:   Tue Mar 13 22:14:08 2018 -0700
+Date:   Thu Mar 15 20:24:35 2018 -0700
 
-    added all the updates to analysis
+    gslab-econ/admin#141 re-did first step, running with R
 
 
 Files changed since last commit:
@@ -20,13 +20,9 @@ Files changed since last commit:
 
 .gitignore
 analysis/SConstruct
-analysis/config_global.yaml
-analysis/release/descriptive/plot.eps
-analysis/release/descriptive/sconscript_descriptive.log
-analysis/release/descriptive/table.txt
 analysis/release/sconstruct.log
 analysis/release/state_of_repo.log
-analysis/run.py
+analysis/source/prepare_data/SConscript
 
 ===================================
 
@@ -43,14 +39,14 @@ analysis/run.py
    modified on: 15 Mar 2018 19:24:34
    size of file: 449
 ./SConstruct:
-   modified on: 15 Mar 2018 20:19:54
-   size of file: 1877
+   modified on: 15 Mar 2018 20:26:09
+   size of file: 1876
 ./sconstruct.log:
-   modified on: 15 Mar 2018 20:23:36
-   size of file: 255
+   modified on: 15 Mar 2018 20:26:16
+   size of file: 249
 ./state_of_repo.log:
-   modified on: 15 Mar 2018 20:23:36
-   size of file: 715
+   modified on: 15 Mar 2018 20:26:16
+   size of file: 599
 ./build/descriptive/plot.eps:
    modified on: 15 Mar 2018 20:19:15
    size of file: 15191
@@ -61,23 +57,23 @@ analysis/run.py
    modified on: 15 Mar 2018 20:19:15
    size of file: 39
 ./build/prepare_data/data.txt:
-   modified on: 15 Mar 2018 20:23:36
+   modified on: 15 Mar 2018 20:26:16
    size of file: 1988897
 ./build/prepare_data/sconscript_create_data.log:
-   modified on: 15 Mar 2018 20:23:36
-   size of file: 96
+   modified on: 15 Mar 2018 20:26:16
+   size of file: 255
 ./release/create_data.log:
    modified on: 12 Mar 2018 19:39:31
    size of file: 1482
 ./release/sconstruct.log:
-   modified on: 15 Mar 2018 20:23:02
+   modified on: 15 Mar 2018 20:26:11
    size of file: 92
 ./release/state_of_input.log:
    modified on: 15 Mar 2018 20:06:03
    size of file: 126
 ./release/state_of_repo.log:
-   modified on: 15 Mar 2018 20:22:58
-   size of file: 3353
+   modified on: 15 Mar 2018 20:25:59
+   size of file: 3224
 ./release/descriptive/plot.eps:
    modified on: 15 Mar 2018 20:19:15
    size of file: 15191
@@ -118,5 +114,5 @@ analysis/run.py
    modified on: 06 Mar 2018 11:31:33
    size of file: 81
 ./source/prepare_data/SConscript:
-   modified on: 15 Mar 2018 20:05:32
+   modified on: 15 Mar 2018 20:25:56
    size of file: 1126
