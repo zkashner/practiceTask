@@ -8,18 +8,23 @@ as it can be edited after state_of_repo.log finishes running
 ===================================
 Last commit:
 
-commit 3987bae6021c7108eb0647f952728b4d4f210bb8
+commit 3cf6f30907d129cb114067a0c2b36e02069c80f1
 Author: Zane Kashner <zanekashner@gmail.com>
-Date:   Thu Mar 15 20:24:35 2018 -0700
+Date:   Thu Mar 15 20:26:47 2018 -0700
 
-    gslab-econ/admin#141 re-did first step, running with R
+    gslab-econ/admin#141 actually ran it with R, disregard previous commit
 
 
 Files changed since last commit:
 
 
+.gitattributes
 .gitignore
 analysis/SConstruct
+analysis/config_global.yaml
+analysis/release/create_data.log
+analysis/release/descriptive/plot.eps
+analysis/release/descriptive/sconscript_descriptive.log
 analysis/release/sconstruct.log
 analysis/release/state_of_repo.log
 analysis/source/prepare_data/SConscript
@@ -29,90 +34,90 @@ analysis/source/prepare_data/SConscript
  *** FILE STATUS ***
 
 ===================================
-./config_global.yaml:
-   modified on: 15 Mar 2018 20:10:04
-   size of file: 1259
 ./config_user.yaml:
-   modified on: 06 Mar 2018 11:34:08
-   size of file: 632
+   modified on: 21 Mar 2018 11:10:34
+   size of file: 621
 ./run.py:
-   modified on: 15 Mar 2018 19:24:34
+   modified on: 17 Mar 2018 21:30:10
    size of file: 449
-./SConstruct:
-   modified on: 15 Mar 2018 20:26:09
-   size of file: 1876
-./sconstruct.log:
-   modified on: 15 Mar 2018 20:26:16
-   size of file: 249
 ./state_of_repo.log:
-   modified on: 15 Mar 2018 20:26:16
-   size of file: 599
-./build/descriptive/plot.eps:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 15191
-./build/descriptive/sconscript_descriptive.log:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 96
-./build/descriptive/table.txt:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 39
-./build/prepare_data/data.txt:
-   modified on: 15 Mar 2018 20:26:16
-   size of file: 1988897
-./build/prepare_data/sconscript_create_data.log:
-   modified on: 15 Mar 2018 20:26:16
-   size of file: 255
-./release/create_data.log:
-   modified on: 12 Mar 2018 19:39:31
-   size of file: 1482
-./release/sconstruct.log:
-   modified on: 15 Mar 2018 20:26:11
-   size of file: 92
-./release/state_of_input.log:
-   modified on: 15 Mar 2018 20:06:03
-   size of file: 126
-./release/state_of_repo.log:
-   modified on: 15 Mar 2018 20:25:59
-   size of file: 3224
-./release/descriptive/plot.eps:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 15191
-./release/descriptive/sconscript_descriptive.log:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 96
-./release/descriptive/table.txt:
-   modified on: 15 Mar 2018 20:19:15
-   size of file: 39
-./release/lg/data.txt:
-   modified on: 06 Mar 2018 11:34:09
-   size of file: 1988897
-./source/descriptive/data.txt:
-   modified on: 15 Mar 2018 20:05:34
-   size of file: 1988897
+   modified on: 21 Mar 2018 11:22:51
+   size of file: 785
+./SConstruct:
+   modified on: 21 Mar 2018 11:08:19
+   size of file: 1876
+./config_global.yaml:
+   modified on: 21 Mar 2018 11:22:40
+   size of file: 732
+./sconstruct.log:
+   modified on: 21 Mar 2018 11:22:51
+   size of file: 254
+./source/externals/data.txt:
+   modified on: 12 Mar 2018 19:43:23
+   size of file: 3453388
+./source/prepare_data/create_data.m:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 202
+./source/prepare_data/create_data.sh:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 81
+./source/prepare_data/create_data.do:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 263
+./source/prepare_data/SConscript:
+   modified on: 21 Mar 2018 11:07:56
+   size of file: 1126
+./source/prepare_data/create_data.py:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 260
+./source/prepare_data/create_data.r:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 249
 ./source/descriptive/descriptive.py:
-   modified on: 12 Mar 2018 20:08:49
+   modified on: 17 Mar 2018 21:30:10
    size of file: 548
 ./source/descriptive/SConscript:
    modified on: 15 Mar 2018 20:23:31
    size of file: 501
-./source/externals/data.txt:
-   modified on: 12 Mar 2018 19:43:23
-   size of file: 3453388
-./source/prepare_data/create_data.do:
-   modified on: 06 Mar 2018 12:46:05
-   size of file: 263
-./source/prepare_data/create_data.m:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 202
-./source/prepare_data/create_data.py:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 260
-./source/prepare_data/create_data.r:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 249
-./source/prepare_data/create_data.sh:
-   modified on: 06 Mar 2018 11:31:33
-   size of file: 81
-./source/prepare_data/SConscript:
-   modified on: 15 Mar 2018 20:25:56
-   size of file: 1126
+./source/descriptive/data.txt:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 1988897
+./release/create_data.log:
+   modified on: 21 Mar 2018 11:19:13
+   size of file: 1452
+./release/state_of_repo.log:
+   modified on: 21 Mar 2018 11:19:13
+   size of file: 3464
+./release/state_of_input.log:
+   modified on: 17 Mar 2018 21:30:10
+   size of file: 126
+./release/sconstruct.log:
+   modified on: 21 Mar 2018 11:19:13
+   size of file: 1385
+./release/descriptive/sconscript_descriptive.log:
+   modified on: 18 Mar 2018 13:56:51
+   size of file: 96
+./release/descriptive/plot.eps:
+   modified on: 18 Mar 2018 13:56:51
+   size of file: 15191
+./release/descriptive/table.txt:
+   modified on: 18 Mar 2018 13:56:50
+   size of file: 39
+./release/lg/data.txt:
+   modified on: 06 Mar 2018 11:34:09
+   size of file: 1988897
+./build/prepare_data/sconscript_create_data.log:
+   modified on: 21 Mar 2018 11:22:51
+   size of file: 1566
+./build/prepare_data/data.txt:
+   modified on: 21 Mar 2018 11:22:51
+   size of file: 1988897
+./build/descriptive/sconscript_descriptive.log:
+   modified on: 18 Mar 2018 13:56:51
+   size of file: 96
+./build/descriptive/plot.eps:
+   modified on: 18 Mar 2018 13:56:51
+   size of file: 15191
+./build/descriptive/table.txt:
+   modified on: 18 Mar 2018 13:56:50
+   size of file: 39
